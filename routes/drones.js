@@ -15,8 +15,7 @@ router.get('/drones/:id/edit', (req, res, next) => {
   const id = req.params.id
   Drone.findById(id)
   .then((drone)=>{
-    
-    res.render("../views/drones/update-form", drone)
+      res.render("drones/update-form", drone)
   })
 });
 
@@ -25,7 +24,7 @@ router.post('/drones/:id/edit', (req, res, next) => {
   const name = req.body.name;
   const propellers = req.body.propellers;
   const maxSpeed = req.body.maxSpeed;
-  Drone.findOneAndUpdate(id, {name,propellers,maxSpeed})
+  Drone.findByIdAndUpdate(id, {name,propellers,maxSpeed})
     .then(()=>{
       res.redirect("/drones")
     })
